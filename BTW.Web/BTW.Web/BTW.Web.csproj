@@ -16,4 +16,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Components\Layout\NavMenu.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+  </ItemGroup>
+
 </Project>

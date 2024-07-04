@@ -1,0 +1,17 @@
+﻿#footer {
+    background: var(--bts-primary-light);
+    color: var(--bts-white);
+}
+
+#footer .container{
+    justify-content: space-between;
+}
+
+.footer-column{
+    display: flex;
+    height: 100%;
+    width: 25%;
+}
+
+@media (prefers-color-scheme: light) {
+}
