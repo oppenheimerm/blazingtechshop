@@ -1,0 +1,75 @@
+﻿.navabr {
+    height: 80px;
+    background: var(--bts-primary-light);
+    color: var(--bts-white);
+}
+
+
+.navabr .wrapper{
+    padding: 12px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapper .main-nav,
+.wrapper .rhs,
+.wrapper .center {
+    display: flex;
+}
+
+.wrapper .main-nav {
+    align-items: center;
+    gap: 24px;
+}
+
+.wrapper .rhs {
+    gap: 24px;
+    align-items: center;
+}
+
+.wrapper .center {
+    align-items: center;
+}
+
+.wrapper .item {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.text-logo span {
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 0.8px;
+}
+
+.rhs .icons{
+    display: flex;
+    gap: 12px;
+}
+
+.cart-icon{
+    position: relative;
+}
+    .cart-icon .cart-count {
+        font-size: 12px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: var(--bts-link-active);
+        color: var(--bts-white);
+        position: absolute;
+        right: -10px;
+        top: -10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+@media (prefers-color-scheme: light) {
+    .navabr {
+        background: var(--black-1);
+        color: var(--bts-white);
+    }
+}

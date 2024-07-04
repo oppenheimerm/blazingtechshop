@@ -1,0 +1,11 @@
+﻿@page "/product/{id:int}"
+@rendermode InteractiveWebAssembly
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+}
+
+<h1>
+    Details for product: @Id
+</h1>
