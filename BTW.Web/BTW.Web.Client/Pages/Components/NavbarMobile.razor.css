@@ -1,0 +1,136 @@
+﻿#navbar-mobile {
+    width: 100%;
+    height: 80px;
+    background-color: var(--black-1);
+    color: var(--bts-white);
+    display: none;
+}
+
+#navbar-mobile .container {
+    height: 100%;
+}
+
+.navbar-nav {
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 100%;
+}
+
+.navbar-nav .navbar-left-wrap {
+    margin-right: 1rem;
+}
+
+.navbar-nav .navbar-right-wrap {
+    margin-left: auto;
+}
+
+.navbar-left-wrap h3 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--bts-white);
+}
+
+.navbar-right-wrap span {
+    font-size: 24px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+/* drop ddown */
+.nav-responsive-wrap {
+    height: 0;
+    width: 0;
+    display: none;    
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: auto;
+    transition: position 0.5s;
+}
+
+.show-mobile-menu {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: inline-block;
+    z-index: 10;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(48, 48, 48, .95); /* black-1*/
+}
+
+#hamburger, #close-hamburger {
+    cursor: pointer;
+}
+
+.nav-responsive-wrap-inner {
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+
+.mobile-nav-categories-wrap {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--mb-0-75);
+    background-color: #ffffff;
+    padding-left: var(--mb-0-5);
+    padding-right: var(--mb-0-5);
+}
+
+.mob-cat-item {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: var(--mb-0-5);
+    width: 100%;
+    align-content: flex-start;
+    align-items: center;
+    gap: 4px;
+}
+
+.mob-cat-item span {
+    color: var(--black-1);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.mob-cat-item img {
+    width: 80px;
+    margin-right: 2px;
+    justify-content: flex-start;
+}
+
+
+/* Small devices such as large phones (640px and up) */
+@media only screen and (min-width: 320px) and (max-device-width : 959px) {
+    #navbar-mobile{
+        width: 100%;
+        height: 80px;
+        display: inline-block;
+    }
+
+}
+
+/* Small devices such as large phones (640px and up) */
+@media only screen and (min-width: 640px) {
+}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices such as laptops (1024px and up) */
+@media only screen and (min-width: 1024px) {
+}
+
+/* Largest devices such as desktops (1280px and up) */
+@media only screen and (min-width: 1280px) {
+}
+
+
+body {
+}

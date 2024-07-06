@@ -1,0 +1,13 @@
+﻿@page "/category/{id:int}"
+
+
+@rendermode InteractiveWebAssembly
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+}
+
+<h1>
+    Details for Category: @Id
+</h1>

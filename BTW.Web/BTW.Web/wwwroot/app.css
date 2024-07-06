@@ -27,6 +27,7 @@
     --black-1: #303030;
     --black-2: #141516;
     --bts-grey: #7F8C8D; /*#BDC3C7*/
+    --bts-bg: #CECDC7;
     --input-background: #BDC3C7;
     --input-disabled: rgba(255, 205, 2, 0.4);
     --info-colour: #6093AC;
@@ -72,7 +73,7 @@ body {
     flex-direction: column;
     min-height: 100%;
     display: flex;
-    background: var(--bts-primary);
+    background: var(--bts-bg);
     color: var(--bts-white);
 }
 
@@ -85,6 +86,7 @@ body {
 #main-content {
     flex: 1 0 auto;
     padding: 0.5rem;
+    position: relative;
 }
 
 a {
@@ -104,6 +106,10 @@ a {
 .main-nav a:hover,
 .main-nav a span:hover{
     color: var(--bts-link-active);
+}
+
+.display-none{
+    display:none!important;
 }
 
 
@@ -165,8 +171,8 @@ h6 {
 }
 
 .container {
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
 .display-flex {
@@ -210,6 +216,39 @@ h6 {
 
 .btn-primary:not(:disabled) {
     cursor: pointer;
+}
+
+/*========== 
+    Forms
+==========*/
+
+.search
+{
+    display: inline-block;
+    position:relative;
+    margin: 0;
+}
+
+.search .mobile-search-icon{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #868686;
+    width: 48px;
+    color: var(--black-1);
+}
+
+.search .search-input{
+    padding-left: 44px;
+    height: 48px;
+    padding-right: 8px;
+    background: var(--bts-white);
+    color: var(--black-1);
+    width: 100%;
 }
 
 /*========== 
@@ -284,4 +323,35 @@ h6 {
 
 .darker-border-checkbox.form-check-input {
     border-color: #929292;
+}
+
+/* Small devices such as large phones (640px and up) */
+@media only screen and (min-width: 320px) {
+
+}
+
+/* Small devices such as large phones (640px and up) */
+@media only screen and (min-width: 640px) {
+    /* UI */
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 768px) {
+    /* UI */
+    .container {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+/* Large devices such as laptops (1024px and up) */
+@media only screen and (min-width: 1024px) {
+}
+
+/* Largest devices such as desktops (1280px and up) */
+@media only screen and (min-width: 1280px) {
 }
