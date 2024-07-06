@@ -1,4 +1,8 @@
-﻿.navabr {
+﻿#navbar-desktop{
+    display: none;
+}
+
+.navabr {
     height: 80px;
     background: var(--bts-primary-light);
     color: var(--bts-white);
@@ -71,5 +75,13 @@
     .navabr {
         background: var(--black-1);
         color: var(--bts-white);
+    }
+}
+
+
+/* Desktop > 959px */
+@media only screen and (min-width: 959px) {
+    #navbar-desktop{
+        display: inline-block;
     }
 }

@@ -1,0 +1,126 @@
+﻿@inject IJSRuntime JSRuntime;
+@implements IAsyncDisposable;
+@rendermode InteractiveWebAssembly
+
+@code {
+    private ElementReference HamburgerButton;
+    private ElementReference CloseHamburgerButton;
+    private ElementReference NavResponsiveWrap;
+
+    // To load a JS file only where required (e.g., a specific page), you need to
+    // implement the IJSObjectReference interface and utilize the JavaScript
+    // module isolation properly.
+    private IJSObjectReference? module;
+
+    //  Load after the entire page has been rendered
+    //  We need to make sure that if we access elements
+    // /on the page, that they are there for us to access.
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        //  We don't need to load our javascript every time the
+        //  the page loads
+        if (firstRender)
+        {
+            module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "/scripts/navbarMobile.js");
+
+            //  If we needed to init our javascript, we can do the following:
+            //  public List<Food>? specials null not properly handled
+            await module.InvokeVoidAsync("initMobileNav", HamburgerButton, CloseHamburgerButton, NavResponsiveWrap);
+
+        }
+    }
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (module is not null)
+        {
+            await module.DisposeAsync();
+        }
+    }
+
+    private void hamburgerButtonClick()
+    {
+        module.InvokeVoidAsync("hamburgerArrowButtonClick");
+    }
+
+    private void closeButtonClicked()
+    {
+        module.InvokeVoidAsync("closeMobileMenuButtonClicked");
+    }
+
+    private void hideMobileMenu()
+    {
+        module.InvokeVoidAsync("hideMobileMenu");
+    }
+}
+
+
+<div class="navbar" id="navbar-mobile">
+    <div class="container">
+        <nav class="navbar-nav">
+            <div class="navbar-left-wrap">
+                <NavLink href="/">
+                    <h3>BlazingTechShop</h3>
+                </NavLink>
+
+                
+            </div>
+            <div class="navbar-right-wrap">
+                <span class="material-symbols-sharp" @ref=HamburgerButton id="hamburger" @onclick="hamburgerButtonClick">
+                    menu
+                </span>
+                <span class="material-symbols-sharp display-none" @ref=CloseHamburgerButton id="close-hamburger" @onclick="closeButtonClicked">
+                    close
+                </span>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="nav-responsive-wrap" @ref=NavResponsiveWrap>
+    <div class="nav-responsive-wrap-inner">
+        <form id="mobile-search-form" class="search">
+            <span class="material-symbols-sharp mobile-search-icon">
+                search
+            </span>
+            <input name="q" class="search-input" placeholder="Search" required="" aria-label="Search" type="search">
+        </form>
+        <div class="mobile-nav-categories-wrap">
+            <NavLink href="category/1">
+                <div class="mob-cat-item" @onclick="hideMobileMenu">
+                    <img src="/img/categories/home-entertainment.jpg" />
+                    <span> Home Entertainment</span>
+                </div>
+            </NavLink>
+            <NavLink href="category/2" @onclick="hideMobileMenu">
+                <div class="mob-cat-item">
+                    <img src="/img/categories/computers.jpg" />
+                    <span> Computers</span>
+                </div>
+            </NavLink>
+            <NavLink href="category/3" @onclick="hideMobileMenu">
+                <div class="mob-cat-item">
+                    <img src="/img/categories/phones-and-tablets.jpg" />
+                    <span> Phones and Tablets</span>
+                </div>
+            </NavLink>
+            <NavLink href="category/4" @onclick="hideMobileMenu">
+                <div class="mob-cat-item">
+                    <img src="/img/categories/consoles-and-vr.jpg" />
+                    <span> Consoles and VR</span>
+                </div>
+            </NavLink>
+            <NavLink href="category/5" @onclick="hideMobileMenu">
+                <div class="mob-cat-item">
+                    <img src="/img/categories/audio-and-music.jpg" />
+                    <span> Audio and Music</span>
+                </div>
+            </NavLink>
+
+
+
+
+
+        </div>
+    </div>
+
+</div>
