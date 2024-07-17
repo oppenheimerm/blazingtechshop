@@ -20,9 +20,10 @@
         Colours
      ==========*/
     --bts-white: #FAF7F7;
-    --bts-primary: #2a3049;
+    --bts-primary: #D0E59F;
     --bts-primary-light: #303751;
     --bts-secondary: #52308b;
+    --bts-link: #D0E59F;
     --bts-link-active: #be2af0;
     --black-1: #303030;
     --black-2: #141516;
@@ -54,7 +55,7 @@
     /*========== 
         Box shadows
     ==========*/
-    --light-box-shadow: 0 2px 12px 0 rgba(0,0,0,.64);
+    --light-box-shadow: 0 2px 12px 0 rgba(0,0,0,.44);
     --ease-inout-quick: .5s ease-in-out;
 }
 
@@ -85,7 +86,6 @@ body {
 
 #main-content {
     flex: 1 0 auto;
-    padding: 0.5rem;
     position: relative;
 }
 
@@ -106,6 +106,21 @@ a {
 .main-nav a:hover,
 .main-nav a span:hover{
     color: var(--bts-link-active);
+}
+
+.lnk {
+    color: var(--black-1);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: var(--ease-inout-quick);
+    transition-property: color;
+}
+
+.lnk:hover,
+.lnk:active{
+    color: var(--black-1)!important;
+    text-decoration: underline;
 }
 
 .display-none{
@@ -170,6 +185,14 @@ h6 {
     padding-bottom: 0;
 }
 
+.margin-top-small {
+    margin-top: var(--mb-0-5);
+}
+
+.margin-top-xtra-large {
+    margin-top: var(--mb-4);
+}
+
 .container {
     padding-left: 12px;
     padding-right: 12px;
@@ -196,10 +219,10 @@ h6 {
     Buttons
 ==========*/
 .btn-primary {
-    color: var(--bts-white);
+    color: var(--black-1);
     border-color: transparent;
     border: 2px solid transparent;
-    background: rgba(190, 42, 240, .75);
+    background: rgba(208, 229, 159, .75); /* #D0E59F */
     text-transform: none;
     padding: 0 24px;
     transition: .1s ease-in-out;
@@ -208,10 +231,13 @@ h6 {
     border-radius: 2px;
     line-height: 44px;
     display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 0.32);
 }
 
 .btn-primary:hover{
-    background: var(--bts-link-active);
+    background: rgba(208, 229, 159, 1);/* #D0E59F */
+    box-shadow: -5px -5px 15px rgba(0,0,0,.1),4px 4px 12px rgba(57,65,124,.1);
+    border: none;
 }
 
 .btn-primary:not(:disabled) {

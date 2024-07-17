@@ -1,11 +1,15 @@
 ﻿#navbar-desktop{
     display: none;
+    width: 100%;
+    position: fixed;
+    z-index: 10;
 }
 
 .navabr {
-    height: 80px;
-    background: var(--bts-primary-light);
+    /*height: 80px;*/
+    background: var(--black-1);
     color: var(--bts-white);
+    border-bottom: 1px solid rgba(229, 233, 237, .25);/*#E5E9ED*/
 }
 
 
@@ -56,26 +60,23 @@
 .cart-icon{
     position: relative;
 }
-    .cart-icon .cart-count {
-        font-size: 12px;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background-color: var(--bts-link-active);
-        color: var(--bts-white);
-        position: absolute;
-        right: -10px;
-        top: -10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.cart-icon .cart-count {
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--bts-link-active);
+    color: var(--bts-white);
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 @media (prefers-color-scheme: light) {
-    .navabr {
-        background: var(--black-1);
-        color: var(--bts-white);
-    }
+
 }
 
 
