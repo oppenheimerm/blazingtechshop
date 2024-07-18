@@ -140,95 +140,6 @@ Selection section ends
 
 
 
-/*========== 
-Product-range starts
-==========*/
-
-.range-col {
-    display: flex;
-    flex-direction: column;
-    margin-top: var(--mb-4);
-    margin-bottom: var(--mb-4);
-    padding-left: 8px;
-    padding-right: 8px;
-    gap: 4px;    
-}
-
-.range-meta {
-    font-size: 16px;
-    text-align: center;
-    font-weight: 500;
-    color: var(--black-1);
-    margin-bottom: var(--mb-0-75);
-}
-
-.range-tagline {
-    font-weight: 700;
-    color: var(--black-1);
-    text-align: center;
-}
-
-.range-col-items {
-    display: flex;
-    flex-direction: column;
-    justify-content:center;
-    width: 100%;
-    height: 100%;
-    gap: 4px;
-}
-
-.range-col-cell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 0;
-    background-color: #fff;
-    flex-direction: column;
-    border-radius: 8px;
-    box-shadow: var(--light-box-shadow);
-    transition: var(--ease-inout-quick);
-    transition-property: box-shadow;
-}
-
-.range-col-cell:hover{
-    box-shadow: none;
-}
-
-.range-col-cell a img{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height:100px;
-    width: 100px;
-    margin-top: 12px;
-}
-
-.range-col-cell h3{
-    font-size: 12px;
-    font-weight: 700;
-    text-align: center;
-    color: var(--black-1);
-    margin-top: var(--mb-0-5);
-}
-
-/*.range-col-cell{
-
-}
-
-.range-col-cell h3{
-    font-size: 12.8px;
-    color: var(--black-1);
-    font-weight: 600;
-    text-align:center;
-}
-
-.range-col-cell-lnk img{
-    height: 100px;
-} */
-
-/*========== 
-Product-range ends
-==========*/
 
 
 /* Small devices such as large phones (640px and up) */
@@ -238,34 +149,6 @@ Product-range ends
 
 
 @media only screen and (min-width: 500px) {
-
-    /*========== 
-Product-range starts
-==========*/
-
-    .range-col-items {
-        display: flex;
-        gap: 8px;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .range-col-cell {
-        display: inline-flex;
-        align-items: center;
-        flex-wrap: wrap;
-        flex: 0 0 46%;
-    }
-
-    .range-col-cell h3{
-        font-size: 16px;    
-    }
-
-    /*========== 
-Product-range ends
-==========*/
 
 }
 
@@ -423,25 +306,6 @@ Product-range ends
     featured section ends
     ==========*/
 
-    /*========== 
-Product-range starts
-==========*/    
-
-    .range-col-cell {
-        display: inline-flex;
-        align-items: center;
-        flex-wrap: wrap;
-        flex: 0 0 24%;
-    }
-
-    /*.range-col-cell h3{
-        font-size: 16px;    
-    }*/
-
-    /*========== 
-Product-range ends
-==========*/
-
 }
 
 /* Large devices such as laptops (1024px and up) */
@@ -467,33 +331,4 @@ Product-range ends
 /* Largest devices such as desktops (1280px and up) */
 @media only screen and (min-width: 1280px) {
 
-    /*========== 
-    Product-range starts
-    ==========*/
-
-    .range-col-items {
-        display: flex;
-        gap: 8px;
-        flex-wrap: nowrap;
-    }
-
-    .range-col-cell {
-        display: inline-flex;
-        align-items: center;
-        flex: 0 0 12%;
-    }
-
-    .range-col-cell h3{
-        font-size: 12px;
-        font-weight: 700;
-    }
-
-
-    /*.range-col-cell h3{
-        font-size: 16px;    
-    }*/
-
-    /*========== 
-    Product-range ends
-    ==========*/
 }

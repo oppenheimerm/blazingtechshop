@@ -1,4 +1,6 @@
 ﻿@page "/"
+@using BTW.Web.Client.Pages.Components
+
 
 <PageTitle>Home</PageTitle>
 
@@ -12,7 +14,7 @@
             <NavLink class="" href="categories">
                 Drones
             </NavLink>
-            <h3>DJI Mini 4K</h3>
+            <h3>Rent to own the DJI Mini 4K</h3>
             <span class="item-details">
                 DJI Mini 4K, drone with 4K UHD Camera.  3-axis gimbal stabilization, 10km 
                 video transmission, auto return, wind resistance, 31-Min Max Flight Time, 
@@ -29,63 +31,9 @@
     
 </div>
 
-<div id="product-range" class="margin-top-xtra-large">
-    <div class="range-col">
-        <div class="range-meta">Categories</div>
-        <h2 class="range-tagline">        Explore Our Product Range    </h2>
-        <div class="range-col-items">
-            <div class="range-col-cell">
-                <NavLink class="range-col-cell-lnk" href="categories">
-                    <img src="/img/categories/audio-and-music.jpg" />
-                </NavLink>
-                <h3>Audio and Music </h3>
-            </div>
-            <div class="range-col-cell">
-                <NavLink class="range-col-cell-lnk" href="categories">
-                    <img src="/img/categories/drones.jpg" />
-                </NavLink>
-                <h3>Drones </h3>
-            </div>
-            <div class="range-col-cell">
-                <NavLink class="range-col-cell-lnk" href="categories">
-                    <img src="/img/categories/computers.jpg" />
-                </NavLink>
-                <h3>Computers </h3>
-            </div>
-            <div class="range-col-cell">
-                <NavLink class="range-col-cell-lnk" href="categories">
-                    <img src="/img/categories/wearables.jpg" />
-                </NavLink>
-                <h3>Wearbales </h3>
-            </div>
-            <div class="range-col-cell">
-                <NavLink class="range-col-cell-lnk" href="categories">
-                    <img src="/img/categories/consoles-and-vr.jpg" />
-                </NavLink>
-                <h3>Gaming & VR </h3>
-            </div>
-            <div class="range-col-cell">
-                <NavLink class="range-col-cell-lnk" href="categories">
-                    <img src="/img/categories/phones-and-tablets.jpg" />
-                </NavLink>
-                <h3>Phones and Tablets </h3>
-            </div>
-            <div class="range-col-cell">
-                <NavLink class="range-col-cell-lnk" href="categories">
-                    <img src="/img/categories/home-entertainment.jpg" />
-                </NavLink>
-                <h3>Home Entertainment </h3>
-            </div>
-            <div class="range-col-cell">
-                <NavLink class="range-col-cell-lnk" href="categories">
-                    <img src="/img/categories/cameras.jpg" />
-                </NavLink>
-                <h3>Cameras </h3>
-            </div>
-        </div>
+<HowItWorkds />
 
-    </div>
-</div>
+<ProductRange />
 
 <div id="selection" class="margin-top-small">
     <div class="selection-col">
@@ -117,5 +65,7 @@
         </div>
     </div>
 </div>
+
+
 
 
