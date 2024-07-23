@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BTW.Web", "BTW.Web\BTW.Web\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BTW.Web.Client", "BTW.Web\BTW.Web.Client\BTW.Web.Client.csproj", "{FD70F01B-F50B-43C4-98C1-557FB676DD32}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BT.Datastore.EFCore", "BT.Datastore.EFCore\BT.Datastore.EFCore.csproj", "{36894027-749C-41FB-B40C-E7E81FFACD93}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BT.Core", "BT.Core\BT.Core.csproj", "{A458974E-54AF-4A37-B268-87FFA16DB1C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{FD70F01B-F50B-43C4-98C1-557FB676DD32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD70F01B-F50B-43C4-98C1-557FB676DD32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD70F01B-F50B-43C4-98C1-557FB676DD32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36894027-749C-41FB-B40C-E7E81FFACD93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36894027-749C-41FB-B40C-E7E81FFACD93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36894027-749C-41FB-B40C-E7E81FFACD93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36894027-749C-41FB-B40C-E7E81FFACD93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A458974E-54AF-4A37-B268-87FFA16DB1C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A458974E-54AF-4A37-B268-87FFA16DB1C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A458974E-54AF-4A37-B268-87FFA16DB1C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A458974E-54AF-4A37-B268-87FFA16DB1C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

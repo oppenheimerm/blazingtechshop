@@ -1,10 +1,12 @@
 using BTW.Web.Client.Pages;
 using BTW.Web.Components;
 using BTW.Web.Components.Account;
-using BTW.Web.Data;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using BT.Core;
+using BT.Datastore.EFCore;
+using BTW.Datastore.EFCore.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,6 +53,16 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<ApplicationDbContext>();
+    context.Database.EnsureCreated();
+    // DbInitializer.Initialize(context);
+}
+
 
 app.UseHttpsRedirection();
 
