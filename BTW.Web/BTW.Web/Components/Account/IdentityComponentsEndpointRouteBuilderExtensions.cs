@@ -1,6 +1,6 @@
+using BTW.Datastore.EFCore.Core;
 using BTW.Web.Components.Account.Pages;
 using BTW.Web.Components.Account.Pages.Manage;
-using BTW.Web.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
