@@ -1,0 +1,174 @@
+﻿@inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime;
+@implements IAsyncDisposable;
+
+@code {
+	// To load a JS file only where required (e.g., a specific page), you need to
+	// implement the IJSObjectReference interface and utilize the JavaScript
+	// module isolation properly.
+
+	// https://stackoverflow.com/questions/67406662/call-javascript-function-from-external-library-with-blazor
+	private IJSObjectReference? module;
+
+	private ElementReference MenuBar;
+	private ElementReference SideBar;
+	private ElementReference SwitchMode;
+
+	//  Load after the entire page has been rendered
+	//  We need to make sure that if we access elements
+	// /on the page, that they are there for us to access.
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		//  We don't need to load our javascript every time the
+		//  the page loads
+		if (firstRender)
+		{
+			module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./Shared/MainLayout.razor.js");
+
+			//  If we needed to init our javascript, we can do the following:
+			//  public List<Food>? specials null not properly handled
+			await module.InvokeVoidAsync("initSidebar", MenuBar, SideBar, SwitchMode);
+
+		}
+	}
+
+
+	async ValueTask IAsyncDisposable.DisposeAsync()
+	{
+		if (module is not null)
+		{
+			await module.DisposeAsync();
+		}
+	}
+
+	private void menuBarClick()
+	{
+		if (module is not null)
+		{
+			module.InvokeVoidAsync("menuBarClick");
+		}
+	}
+
+	private void themeModeToggle()
+	{
+		if(module is not null)
+		{
+			module.InvokeVoidAsync("themeModeToggle");
+		}
+	}
+
+	
+}
+
+<PageTitle>BlazingTech</PageTitle>
+
+<!-- Sidebar starts -->
+<section id="sidebar" @ref=SideBar >
+	<a href="#" class="brand">
+		<span class="material-symbols-sharp">
+			trending_up
+		</span>
+		<span class="text">AdminHub</span>
+	</a>
+
+	<ul class="side-menu top">
+		<li class="active">
+			<a href="#">
+				<span class="material-symbols-sharp">
+					dashboard
+				</span>
+				<span class="text">Dashboard</span>
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<span class="material-symbols-sharp">
+					inventory
+				</span>
+				<span class="text">Products</span>
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<span class="material-symbols-sharp">
+					analytics
+				</span>
+				<span class="text">Analytics</span>
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<span class="material-symbols-sharp">
+					sms
+				</span>
+				<span class="text">Message</span>
+			</a>
+		</li>
+		<li>
+			<a href="#">
+				<i class='bx bxs-group'></i>
+				<span class="text">Team</span>
+			</a>
+		</li>
+	</ul>
+
+	<ul class="side-menu">
+		<li>
+			<a href="#">
+				<span class="material-symbols-sharp">
+					settings
+				</span>
+				<span class="text">Settings</span>
+			</a>
+		</li>
+		<li>
+			<a href="#" class="logout">
+				<span class="material-symbols-sharp">
+					logout
+				</span>
+				<span class="text">Logout</span>
+			</a>
+		</li>
+	</ul>
+</section>
+<!-- Sidebar ends -->
+
+<!-- content starts -->
+<section id="content">
+    <nav>
+        <!-- navvbar starts -->
+		<span class="material-symbols-sharp menu-icon" @onclick="menuBarClick" @ref=MenuBar>
+            menu
+        </span>
+        <form action="#">
+            <div class="form-input">
+                <input type="search" placeholder="Search...">
+                <button type="submit" class="search-btn">
+                    <span class="material-symbols-sharp">
+                        search
+                    </span>
+                </button>
+            </div>
+        </form>
+        <input type="checkbox" id="switch-mode" hidden>
+		<label for="switch-mode" class="switch-mode" @onclick="themeModeToggle" @ref=SwitchMode></label>
+        <a href="#" class="notification">
+            <span class="material-symbols-sharp">
+                notifications
+            </span>
+            <span class="num">8</span>
+        </a>
+        <a href="#" class="profile">
+            <span class="material-symbols-sharp">
+                account_circle
+            </span>
+        </a>
+        <!-- navvbar ends -->
+    </nav>
+
+    <main>
+        @Body
+    </main>
+    
+</section>
+<!-- content ends -->
