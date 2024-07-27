@@ -1,5 +1,8 @@
 ﻿@inherits LayoutComponentBase
+
 @inject IJSRuntime JSRuntime;
+@inject NavigationManager NavigationManager;
+
 @implements IAsyncDisposable;
 
 @code {
@@ -31,6 +34,16 @@
 
 		}
 	}
+
+	protected override void OnInitialized() => NavigationManager.LocationChanged += (s, e) => StateHasChanged();
+
+	bool IsActive(string href, NavLinkMatch navLinkMatch = NavLinkMatch.Prefix)
+	{
+		var relativePath = NavigationManager.ToBaseRelativePath(NavigationManager.Uri).ToLower();
+		return navLinkMatch == NavLinkMatch.All ? relativePath == href.ToLower() : relativePath.StartsWith(href.ToLower());
+	}
+
+	string GetActive(string href, NavLinkMatch navLinkMatch = NavLinkMatch.Prefix) => IsActive(href, navLinkMatch) ? "active" : "";
 
 
 	async ValueTask IAsyncDisposable.DisposeAsync()
@@ -72,7 +85,7 @@
 	</a>
 
 	<ul class="side-menu top">
-		<li class="active">
+		<li>
 			<a href="#">
 				<span class="material-symbols-sharp">
 					dashboard
@@ -80,13 +93,23 @@
 				<span class="text">Dashboard</span>
 			</a>
 		</li>
-		<li>
-			<a href="#">
+		<li class="nav-item @GetActive("products/create", NavLinkMatch.All)">
+			<a href="/products/create">
 				<span class="material-symbols-sharp">
 					inventory
 				</span>
 				<span class="text">Products</span>
 			</a>
+		</li>
+		<li class="nav-item @GetActive("brands/index", NavLinkMatch.All)">
+			<a href="/brands/index">
+				<span class="material-symbols-sharp">
+					stacks
+				</span>
+				<span class="text">
+					Brands
+				</span>
+			</a>			
 		</li>
 		<li>
 			<a href="#">
@@ -106,7 +129,9 @@
 		</li>
 		<li>
 			<a href="#">
-				<i class='bx bxs-group'></i>
+				<span class="material-symbols-sharp">
+					groups
+				</span>
 				<span class="text">Team</span>
 			</a>
 		</li>

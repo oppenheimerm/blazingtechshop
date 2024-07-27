@@ -18,6 +18,9 @@ namespace BT.Core
         [StringLength(500)]
         public string? About { get; set; }
 
+		[StringLength(25)]
+		public string? Logo { get; set; }
+
         public ICollection<Product>? Products { get; set; }
     }
 }

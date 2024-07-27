@@ -1,53 +1,55 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet');
 
 :root {
-    /*========== 
+	/*========== 
         Font and typography 
      ==========*/
-    --body-font: "DM Sans", sans-serif;
-    --normal-font-size: 1rem; /* 16 px */
-    --biggest-font-size: 4rem; /* 64 px */
-    --h1-larger-font: 2.875rem; /* 46px */
-    --h1-font-size: 2.25rem; /* 36 px */
-    --h2-font-size: 1.5rem; /* 24 px */
-    --h3-font-size: 1.25rem; /* 20 px */
-    --h4-font-size: 1rem; /* 16 px */
-    --small-font-size: .875rem; /* 14 px */
-    --smaller-font-size: .775rem; /* 12.4 px */
-    --letter-spacing-wide: 0.125rem; /* 2px */
-    --letter-spacing-narrow: -0.05rem; /* -0.9px */
-    /*========== 
+	--body-font: "DM Sans", sans-serif;
+	--normal-font-size: 1rem; /* 16 px */
+	--biggest-font-size: 4rem; /* 64 px */
+	--h1-larger-font: 2.875rem; /* 46px */
+	--h1-font-size: 2.25rem; /* 36 px */
+	--h2-font-size: 1.5rem; /* 24 px */
+	--h3-font-size: 1.25rem; /* 20 px */
+	--h4-font-size: 1rem; /* 16 px */
+	--small-font-size: .875rem; /* 14 px */
+	--smaller-font-size: .775rem; /* 12.4 px */
+	--letter-spacing-wide: 0.125rem; /* 2px */
+	--letter-spacing-narrow: -0.05rem; /* -0.9px */
+	/*========== 
         Colours
      ==========*/
-    --light: #FAF7F7;
-    --primary: #D0E59F;
-    --secondary: #52308b;
-    --grey: #ECF0F5;
-    --dark: #303030;
-    --black-2: #141516;
-    --yellow: #FCFF4A;
-    --blue: #135CE5;
-    /*========== 
+	--light: #FAF7F7;
+	--primary: #D0E59F;
+	--secondary: #52308b;
+	--grey: #ECF0F5;
+	--dark: #303030;
+	--black-2: #141516;
+	--yellow: #FCFF4A;
+	--blue: #135CE5;
+	--warning-colour: #C0392B;
+	--input-disabled: rgba(255, 205, 2, 0.4);
+	/*========== 
         Margins Bottom 
     ==========*/
-    --mb-0-5: .5rem; /* 8px */
-    --mb-0-75: .75rem; /* 12px */
-    --mb-1: 1rem; /* 16px */
-    --mb-1-5: 1.5rem; /* 24px */
-    --mb-2: 2rem; /* 32px */
-    --mb-2-5: 2.5rem; /* 40px */
-    --mb-3: 3rem; /* 48px */
-    --mb-4: 3.6rem; /* 65px */
-    /*========== 
+	--mb-0-5: .5rem; /* 8px */
+	--mb-0-75: .75rem; /* 12px */
+	--mb-1: 1rem; /* 16px */
+	--mb-1-5: 1.5rem; /* 24px */
+	--mb-2: 2rem; /* 32px */
+	--mb-2-5: 2.5rem; /* 40px */
+	--mb-3: 3rem; /* 48px */
+	--mb-4: 3.6rem; /* 65px */
+	/*========== 
         Animation
     ==========*/
-    --ease-in-out-2-sec: .2s ease-in-out;
-    --ease-in-out-3-sec: .6s ease-in-out;
-    /*========== 
+	--ease-in-out-2-sec: .2s ease-in-out;
+	--ease-in-out-3-sec: .6s ease-in-out;
+	/*========== 
         Box shadows
     ==========*/
-    --light-box-shadow: 0 2px 12px 0 rgba(0,0,0,.44);
-    --ease-inout-quick: .5s ease-in-out;
+	--light-box-shadow: 0 2px 12px 0 rgba(0,0,0,.44);
+	--ease-inout-quick: .5s ease-in-out;
 }
 
 body.dark {
@@ -124,6 +126,79 @@ h6 {
 /*========== 
     Layout section starts
 ==========*/
+
+
+.section {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.section-medium {
+	padding-top: 32px;
+	padding-bottom: 32px;
+}
+
+.section-large {
+	padding-top: 48px;
+	padding-bottom: 48px;
+}
+
+.no-top-bottom-padding {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.margin-top-small {
+	margin-top: var(--mb-0-5);
+}
+
+.margin-top-xtra-large {
+	margin-top: var(--mb-4);
+}
+
+.padding-top-small {
+	padding-top: var(--mb-0-5);
+}
+
+.padding-top-xtra-large {
+	padding-top: var(--mb-4);
+}
+
+.padding-bottom-xtra-large {
+	padding-bottom: var(--mb-4);
+}
+
+.padding-top-xtra-large {
+	padding-top: var(--mb-4);
+}
+
+.container {
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+.display-flex {
+	display: flex;
+}
+
+.display-grid {
+	display: grid;
+}
+
+.flex-row {
+	flex-direction: row;
+}
+
+.flex-column {
+	flex-direction: column;
+}
+
+.text-block {
+	line-height: 1.2;
+	margin-top: var(--mb-0-5);
+}
+
+
 
 /* Content*/
 #content {
@@ -328,25 +403,157 @@ h6 {
 ==========*/
 
 /*========== 
-    Responsive starts
+    Forms
 ==========*/
-@media screen and (max-width: 768px) {
 
-	#content {
-		width: calc(100% - 60px);
-		left: 200px;
-	}
+.form-card {
+	width: 100%;
+	margin: var(--mb-0-75) auto;
+	display: flex;
+	flex-direction: column;
+}
+.form-group{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: var(--mb-0-75);
+}
 
-	#content nav .nav-link {
-		display: none;
-	}
+.form-group label{
+	flex: 1 1 0;
+	width: 25%;
+	display: flex;
+}
+
+.form-group .form-control{
+	display: flex;
+	justify-content:flex-start;
+	width: 75%;
+	border-color: none;
+	background: var(--grey);
+	font-weight: 500;
+	line-height: 1.5;
+	border-radius: 8px;
+	padding: 12px;
+	appearance: none;
+	color: var(--dark);
+	border: 1px solid var(--dark);	
+}
+
+/* Validation erros */
+.validation-errors {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	border: 1px solid var(--warning-colour);
+	border-radius: 12px;
+	padding: var(--mb-0-75);
+	margin-bottom: var(--mb-1);
+}
+
+.validation-errors .validation-message{
+	font-size: 12px;
+	font-weight: 500;
+	margin-bottom: var(--mb-0-5);
+}
+
+.validation-errors .validation-message::before{
+	content: " * ";
+}
+
+.form-server-error {
+	background-color: var(--warning-colour);
+	border-radius: 8px;
+	color: #303030;
+	padding: 12px;
+	width: 100%;
+}
+
+.form-server-error span{
+	color: #303030;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.5;
+	text-align: center;
+}
+
+
+/*========== 
+    Forms ends
+==========*/
+/*========== 
+    Buttons starts
+==========*/
+.btn {
+	cursor: pointer;
+	border-radius: 8px;
+	padding: 4px 12px;
+	vertical-align: middle;
+	font-size: 16px;
+	text-align: center;
+	line-height: 38px;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: color,background-color,border-color;
+}
+
+.btn-default {
+    background-color: transparent;
+    border: 1px solid var(--pa-white);
+    color: var(--black-1);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+    color: var(--black-1);
+}
+
+.btn-warning {
+    background-color: var(--warning-colour);
+    border: 1px solid var(--warning-colour);
+    color: var(--black-1);
+}
+
+.btn-primary:hover {
+	background-color: rgba(208, 229, 159, 0.80);
+	border: 1px solid var(--primary);
+	color: var(--black-1);
+	transition: background-color var(--ease-in-out-2-sec);
+}
+
+.btn-warning:hover {
+	background-color: rgba(192, 57, 43, 0.80);
+	border: 1px solid var(--warning-colour);
+	color: var(--black-1);
+	transition: background-color var(--ease-in-out-2-sec);
+}
+
+.btn-disabled,
+.btn-disabled:hover {
+	background-color: var(--input-disabled);
+	border: 1px solid #e5e5e5;
+	color: #999;
+}
+
+.actions-wrap {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	margin: var(--mb-1) auto;
 }
 
 
 
-
-
-
+/*========== 
+    Buttons ends
+==========*/
+/*========== 
+    Responsive starts
+==========*/
 @media screen and (max-width: 576px) {
 	#content nav form .form-input input {
 		display: none;
@@ -378,6 +585,35 @@ h6 {
 	}
 
 }
+
+/* Small devices such as large phones (640px and up) */
+@media only screen and (min-width: 640px) {
+	/* UI */
+	.container {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+
+@media screen and (max-width: 768px) {
+
+	/* UI */
+	.container {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+	#content {
+		width: calc(100% - 60px);
+		left: 200px;
+	}
+
+	#content nav .nav-link {
+		display: none;
+	}
+}
+
+
 /*========== 
     Responsive ends
 ==========*/
