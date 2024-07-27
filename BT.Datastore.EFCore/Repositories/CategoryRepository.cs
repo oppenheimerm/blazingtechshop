@@ -8,9 +8,9 @@ namespace BT.Datastore.EFCore.Repositories
     public class CategoryRepository : ICategoryRepository
     {
         private readonly ILogger<CategoryRepository>? Logger;
-        private readonly ApplicationDbContext? Context;
+        private readonly AppDbContext? Context;
 
-        public CategoryRepository(ILogger<CategoryRepository> logger, ApplicationDbContext context)
+        public CategoryRepository(ILogger<CategoryRepository> logger, AppDbContext context)
         {
             Logger = logger;
             Context = context;

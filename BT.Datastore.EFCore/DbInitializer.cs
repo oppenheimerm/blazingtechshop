@@ -5,7 +5,7 @@ namespace BT.Datastore.EFCore
 {
     public static class DbInitializer
     {
-        public static void Initialize(ApplicationDbContext context)
+        public static void Initialize(AppDbContext context)
         {
             // Look for any .
             if (context.Products.Any())

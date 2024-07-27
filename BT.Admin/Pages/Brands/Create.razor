@@ -1,0 +1,126 @@
+﻿@page "/brands/create"
+
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Mvc;
+@using BT.Admin.Components.Validation
+@using BT.UseCases.Brands
+@using BT.Admin.Components
+	
+@inject NavigationManager NavManager
+@inject IAddBrandUseCase AddBrandUseCase
+@inject ILogger<Create> Logger
+@inject IAddBrandUseCase AddBrandUC
+
+
+<PageTitle>Products - Create</PageTitle>
+
+@code {
+	[SupplyParameterFromForm]
+	public AddBrand? Brand { get; set; }
+
+	private CustomValidation? customValidation;
+	private bool disabled;
+	private string? message;
+	private string messageStyles = "visibility:hidden";
+
+	protected override void OnInitialized() => Brand ??= new();
+
+	private async Task Submit()
+	{
+		customValidation?.ClearErrors();
+		var errors = new Dictionary<string, List<string>>();
+
+		/*if (Model!.Classification == "Defense" &&
+		string.IsNullOrEmpty(Model.Description))
+			{
+			errors.Add(nameof(Model.Description),
+				new() { "For a 'Defense' ship classification, " +
+				"'Description' is required." });
+		}*/
+		if (errors.Any())
+		{
+			customValidation?.DisplayErrors(errors);
+		}
+		else
+		{
+			var status = await AddBrandUseCase.Add(ModelHelpers.ToBrand(Brand));
+			if (status.Success)
+			{
+				NavManager.NavigateTo("/brands/index");
+			}
+			else
+			{
+				disabled = true;
+				messageStyles = "color:red";
+				message = status.ErrorMessage;
+			}
+		}
+		
+	}
+
+}
+
+<section id="product-create" class="section">
+	<div class="head-title">
+		<div class="left">
+			<h1>Brands</h1>
+			<ul class="breadcrumb">
+				<li>
+					<a href="">Create</a>
+				</li>
+				<li>
+					<span class="material-symbols-sharp">
+						chevron_right
+					</span>
+				</li>
+				<li>
+					<a class="active" href="#">All</a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+	<div class="container">
+		<div class="form-card">
+			<EditForm Model=@Brand OnValidSubmit="Submit" FormName="product-create">
+				<DataAnnotationsValidator />
+				<CustomValidation @ref="customValidation" />
+				<ValidationSummary />
+				<div class="form-group">
+					<label for="Name" class="">Name</label>
+					<InputText @bind-Value=Brand!.Name class="form-control" type="text" aria-label="Brand name" id="Name" />
+					<span class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label for="Code" class="">Product Code</label>
+					<InputText @bind-Value=Brand.Code class="form-control" type="text" aria-label="brand code" id="Code" />
+					<span class="text-danger"></span>
+				</div>
+				
+				<div class="form-group">
+					<label for="About" class="">About</label>
+					<InputTextArea @bind-Value=Brand.About class="form-control" type="text" aria-label="about this brand" id="About" />
+					<span class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label for="Logo" class="">Logo</label>
+					<InputText @bind-Value=Brand.Logo class="form-control" type="text" aria-label="logo name" id="Logo" />
+					<span class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<div class="actions-wrap"> 
+						<button class="btn btn-primary" type="submit" disabled="@disabled">Submit</button>
+					</div>					
+				</div>
+				<div class="form-group">
+					<div class="form-server-error" stlye="@messageStyles">
+						<span>Attempted to add product brand with duplicate code: LOWE. Timestamp: 26/07/2024 17:35:31</span>
+					</div>
+				</div>
+			</EditForm>
+		</div>
+		
+
+	</div>
+</section>
