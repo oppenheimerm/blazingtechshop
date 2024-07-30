@@ -4,6 +4,7 @@ using BT.Datastore.EFCore.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using BT.Core.Helpers.Paging;
 
 
 namespace BT.Datastore.EFCore.Repositories
@@ -79,6 +80,34 @@ namespace BT.Datastore.EFCore.Repositories
 
 			return brands;
 		}
+		
+		public PagedList<Brand>GetAll(int? sortingOrder, PagingParameters pagingParameters)
+		{
+            // Get Enum sort type
+            var sortOrder = sortingOrder.HasValue ? PaginHelpers.GetBrandSortOrder(sortingOrder.Value) : BrandSortOrder.Code;
+
+			var brands = Context.ProductBrands
+				.Include(p => p.Products).AsNoTracking();
+
+			switch (sortOrder)
+			{
+				case BrandSortOrder.Id:
+					brands = brands.OrderBy(i => i.Id);
+						break;
+				case BrandSortOrder.Name:
+					brands = brands.OrderBy(n => n.Name);
+					break;
+				case BrandSortOrder.Code:
+					brands = brands.OrderBy(c => c.Code);
+					break;
+				default:
+					brands = brands.OrderBy(i => i.Id);
+					break;
+
+			}
+
+			return PagedList<Brand>.ToPagedList(brands, pagingParameters.PageNumber, pagingParameters.PageSize);
+        }
 
 		public async Task<Brand?> GetBrandById(int id)
 		{

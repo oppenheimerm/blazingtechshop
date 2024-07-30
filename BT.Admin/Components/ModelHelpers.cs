@@ -16,9 +16,7 @@ namespace BT.Admin.Components
 				return new Brand
 				{
 					Name = vm.Name,
-					Code = vm.Code,
-					About = vm.About,
-					Logo = vm.Logo
+					Code = vm.Code
 				};
 			}
 		}

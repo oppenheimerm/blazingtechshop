@@ -1,5 +1,4 @@
 ﻿@inherits LayoutComponentBase
-
 @inject IJSRuntime JSRuntime;
 @inject NavigationManager NavigationManager;
 
@@ -35,7 +34,6 @@
 		}
 	}
 
-	protected override void OnInitialized() => NavigationManager.LocationChanged += (s, e) => StateHasChanged();
 
 	bool IsActive(string href, NavLinkMatch navLinkMatch = NavLinkMatch.Prefix)
 	{
@@ -85,20 +83,12 @@
 	</a>
 
 	<ul class="side-menu top">
-		<li>
+		<li class="">
 			<a href="#">
 				<span class="material-symbols-sharp">
 					dashboard
 				</span>
 				<span class="text">Dashboard</span>
-			</a>
-		</li>
-		<li class="nav-item @GetActive("products/create", NavLinkMatch.All)">
-			<a href="/products/create">
-				<span class="material-symbols-sharp">
-					inventory
-				</span>
-				<span class="text">Products</span>
 			</a>
 		</li>
 		<li class="nav-item @GetActive("brands/index", NavLinkMatch.All)">
@@ -109,7 +99,17 @@
 				<span class="text">
 					Brands
 				</span>
-			</a>			
+			</a>
+		</li>
+
+
+		<li>
+			<a href="#">
+				<span class="material-symbols-sharp">
+					inventory
+				</span>
+				<span class="text">Products</span>
+			</a>
 		</li>
 		<li>
 			<a href="#">
@@ -124,14 +124,12 @@
 				<span class="material-symbols-sharp">
 					sms
 				</span>
-				<span class="text">Message</span>
+				<span class="textg">Message</span>
 			</a>
 		</li>
 		<li>
 			<a href="#">
-				<span class="material-symbols-sharp">
-					groups
-				</span>
+				<i class='bx bxs-group'></i>
 				<span class="text">Team</span>
 			</a>
 		</li>

@@ -1,7 +1,137 @@
 ﻿@page "/brands/index"
+@page "/brands/index/{sortOrder}/{pageNumber}"
+
+@using BT.Core.Helpers.Paging
+@using BT.UseCases.Brands
+
+@inject IGetAllBrandsUseCase GetAllBrandsUseCase;
+@inject IConfiguration Configuration;
 
 <PageTitle>BlazingTech Admin - Index</PageTitle>
 
 @code {
+    [Parameter]
+    public int? sortOrder { get; set; }
+    [Parameter]
+    public int? pageNumber { get; set; }
+    public BrandSortOrder SortOrder { get; set; }
+    public PagingParameters? IndexPagingParameters { get; set; }
+    int? Spread = 2;
+    public List<PagingLink>? Links { get; set; }
+
+    public PagingResponse<Brand>? PagedBrandList { get; set; }
+
+    //public PagedList<Brand>? Brands;
+
+
+    protected override void OnInitialized()
+    {
+        SortOrder = (!sortOrder.HasValue) ? BrandSortOrder.Id : PaginHelpers.GetBrandSortOrder(sortOrder.Value);
+
+        IndexPagingParameters = new()
+        {
+            PageSize = int.Parse(Configuration["ApplicationSettings:PageSize"]!),
+            PageNumber = (pageNumber.HasValue) ? pageNumber.Value : 1
+        };
+
+        int initSortOrder = (!sortOrder.HasValue) ? 0 : sortOrder.Value;
+        var brands = GetAllBrandsUseCase.Execute(initSortOrder, IndexPagingParameters);
+
+        var pagingResponse = new PagingResponse<Brand>
+        {
+            Items = brands,
+            MetaData = brands.MetaData
+        };
+
+        CreatePaginationLinks(brands);
+        PagedBrandList = pagingResponse;
+
+    }
+
+    /// <summary>
+    /// Create a new _links variable that will hold all the links for our pagination component. As soon as
+    //  our parameters get their values, the OnParameterSet lifecycle method will run and call the
+    //  CreatePaginationLinks method. In that method, we create the Previous link, the page number links with
+    //  the Active property set to true for the current page and the Next link. Additionally, we have the
+    //  OnSelectedPage method.
+    /// </summary>
+    /// <param name="link"></param>
+    /// <returns></returns>
+    void CreatePaginationLinks(PagedList<Brand> brands)
+    {
+        Links = new List<PagingLink>();
+        Links.Add(new PagingLink(brands.MetaData.CurrentPage - 1, brands.MetaData.HasPrevious, "<"));
+        for (int i = 1; i <= brands.MetaData.TotalPages; i++)
+        {
+            if (i >= brands.MetaData.CurrentPage - Spread && i <= brands.MetaData.CurrentPage + Spread)
+            {
+                Links.Add(new PagingLink(i, true, i.ToString()) { Active = brands.MetaData.CurrentPage == i });
+            }
+        }
+        Links.Add(new PagingLink(brands.MetaData.CurrentPage + 1, brands.MetaData.HasNext, ">"));
+    }
 
 }
+
+<div class="head-title">
+    <div class="left">
+        <h1>Brands</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">All</a>
+            </li>
+            <li>
+                <span class="material-symbols-sharp">
+                    chevron_right
+                </span>
+            </li>
+            <li>
+                <a class="active" href="/">Home</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="all-brands" class="margin-top-small">
+    <div class="flex-row container">
+        @if (PagedBrandList == null)
+        {
+            <h1>LOADING...</h1>
+        }
+        else
+        {
+
+            <div class="tbl-head-inner">
+                <span class="table-title">All Brands</span>
+                <button class="">Add a New Brand</button>
+            </div>
+
+            <table class="std-table">
+                <thead class="table-head">                    
+                    <tr>
+                        <th>Id</th>
+                        <th> Name </th>
+                        <th>Code</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (PagedBrandList.Items != null)
+                        {
+                            foreach (var item in PagedBrandList.Items)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Code</td>
+                                    <td></td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

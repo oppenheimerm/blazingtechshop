@@ -36,7 +36,7 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 // UseCases
 builder.Services.AddTransient<IAddBrandUseCase, AddBrandUseCase>();
-
+builder.Services.AddTransient<IGetAllBrandsUseCase, GetAllBrandsUseCase>();
 
 var app = builder.Build();
 

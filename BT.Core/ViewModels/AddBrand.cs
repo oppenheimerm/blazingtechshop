@@ -12,11 +12,6 @@ namespace BT.Core.ViewModels
 		[Required]
 		[StringLength(4, MinimumLength = 4, ErrorMessage = "4 Letter code required")]
 		public string? Code { get; set; }
-
-		[StringLength(500)]
-		public string? About { get; set; }
-
-		[StringLength(25)]
-		public string? Logo { get; set; }
+		
 	}
 }
