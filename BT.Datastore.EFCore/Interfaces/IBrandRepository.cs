@@ -1,5 +1,6 @@
 ﻿
 using BT.Core;
+using BT.Core.Helpers.Paging;
 
 namespace BT.Datastore.EFCore.Interfaces
 {
@@ -8,6 +9,8 @@ namespace BT.Datastore.EFCore.Interfaces
 		Task<(Brand brand, bool Success, string ErrorMessage)> Create(Brand brand);
 		Task<(Brand brand, bool Success, string ErrorMessage)> Edit(Brand brand);
 		IQueryable<Brand> GetAllNoPaging();
-		Task<Brand?> GetBrandById(int id);
+		PagedList<Brand> GetAll(int? sortingOrder, PagingParameters pagingParameters);
+
+        Task<Brand?> GetBrandById(int id);
 	}
 }

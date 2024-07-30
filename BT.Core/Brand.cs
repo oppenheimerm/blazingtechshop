@@ -13,13 +13,7 @@ namespace BT.Core
 
         [Required]
         [StringLength(4, MinimumLength = 4)]
-        public string? Code { get; set; }
-
-        [StringLength(500)]
-        public string? About { get; set; }
-
-		[StringLength(25)]
-		public string? Logo { get; set; }
+        public string? Code { get; set; }        
 
         public ICollection<Product>? Products { get; set; }
     }

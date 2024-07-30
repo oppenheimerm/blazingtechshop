@@ -546,11 +546,132 @@ h6 {
 	margin: var(--mb-1) auto;
 }
 
-
-
 /*========== 
     Buttons ends
 ==========*/
+
+
+/*========== 
+    Tables start
+==========*/
+.table-wrap {
+    padding: var(--mb-0-5);
+}
+
+.std-table,
+.table-wrap table{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 24px;
+	width: 100%;
+}
+
+.table-head {
+	padding: var(--mb-1-5) 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.table-head .tbl-head-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tbl-head-inner .table-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+table tbody,
+table.std-table tbody,
+.table-wrap table tbody {
+	border-style: solid;
+	border-width: 0;
+}
+
+table thead tr,
+.std-table thead tr {
+    text-align: left;
+}
+
+.col-sortable {
+    color: var(--info-colour);
+    transition: color;
+}
+
+.col-sortable:hover{
+    color: var(--info-colour-hover);
+    transition: color var(--ease-in-out-2-sec); 
+    cursor: pointer;
+}
+
+.std-table tbody tr .center-col {
+    text-align: center;
+}
+
+table tbody tr,
+table.std-table tbody tr
+.table-wrap table tbody tr {
+	padding: 1rem .5rem;
+	color: var(--dark);
+	margin-bottom: var(--mb-0-5);
+}
+
+table tbody tr:nth-child(even),
+table.std-table tbody tr:nth-child(even),
+.table-wrap table tbody tr:nth-child(even) {
+	background-color: rgba(47, 47, 47, 0.5); /* --light-black with opacity */
+}
+
+table tbody tr td,
+table.std-table tbody tr td
+.table-wrap table tbody tr td {
+	font-size: 16px;
+	padding: 0 4px;
+	margin: 4px auto;
+}
+
+.table-wrap table tbody tr td .tbl-img-logo{
+    width: 38px;
+    height: 38px;
+    border-radius: 4px;
+}
+
+.pagination-wrap{
+    margin: 16px auto;
+}
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: 0;
+    padding: 0;
+    list-style: none;
+    justify-content: center;
+}
+
+.pagination .page-item,
+.pagination .page-link{
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.page-item{
+    cursor: pointer;
+}
+
+.page-item.disabled{
+    cursor: not-allowed;
+    background: transparent;
+    color: var(--input-disabled);
+}
+
+/*========== 
+    Tables ends
+==========*/
+
+
 /*========== 
     Responsive starts
 ==========*/

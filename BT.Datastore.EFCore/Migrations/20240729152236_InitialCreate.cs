@@ -57,9 +57,7 @@ namespace BT.Datastore.EFCore.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Code = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: false),
-                    About = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    Logo = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true)
+                    Code = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: false)
                 },
                 constraints: table =>
                 {
