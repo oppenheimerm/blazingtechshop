@@ -13,7 +13,7 @@
 @inject IAddBrandUseCase AddBrandUC
 
 
-<PageTitle>Products - Create</PageTitle>
+<PageTitle>Products - Create Brand</PageTitle>
 
 @code {
 	[SupplyParameterFromForm]
@@ -32,13 +32,6 @@
 		customValidation?.ClearErrors();
 		var errors = new Dictionary<string, List<string>>();
 
-		/*if (Model!.Classification == "Defense" &&
-		string.IsNullOrEmpty(Model.Description))
-			{
-			errors.Add(nameof(Model.Description),
-				new() { "For a 'Defense' ship classification, " +
-				"'Description' is required." });
-		}*/
 		if (errors.Any())
 		{
 			customValidation?.DisplayErrors(errors);

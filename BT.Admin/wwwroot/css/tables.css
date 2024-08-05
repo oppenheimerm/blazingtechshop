@@ -1,0 +1,97 @@
+﻿.table-wrap {
+    background-color: var(--light);
+    padding: 48px 16px;
+    border-radius: 16px;
+    box-shadow: var(--bx-shadow-light)
+}
+
+.tbl-head-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--mb-1) 0;
+    width: 100%;
+    margin-bottom: var(--mb-1);
+}
+
+.content-table {
+    /* sets whether cells inside a <table> have shared or separate borders. */
+    border-collapse: collapse;
+    margin: var(--mb-1-5) 0;
+    font-size: 12px;
+    min-width: 640px;
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden; /* need to make border radius work */
+}
+
+.content-table thead tr{
+    background-color: var(--blue);
+    color: var(--light);
+    text-align: left;
+    font-weight: 700;
+}
+
+.content-table th,
+.content-table td
+{
+    padding: 12px 16px;
+}
+
+.content-table tbody tr{
+    border-bottom: 1px solid #cdcfd1;
+}
+
+.content-table tbody tr:nth-of-type(even){
+    background-color: var(--grey);
+}
+
+.content-table tbody tr:last-of-type{
+    border-bottom: 2px solid var(--blue);
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: var(--blue);
+}
+
+.tbl-icon {
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #fff;
+    height: 60px;
+    box-shadow: var(--bx-shadow-light)
+}
+
+
+
+/* Pagination */
+
+.pagination-wrap{
+    margin: 16px auto;
+}
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: 0;
+    padding: 0;
+    list-style: none;
+    justify-content: center;
+}
+
+.pagination .page-item,
+.pagination .page-link{
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.page-item{
+    cursor: pointer;
+}
+
+.page-item.disabled{
+    cursor: not-allowed;
+    background: transparent;
+    color: var(--input-disabled);
+}

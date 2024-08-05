@@ -116,7 +116,7 @@ namespace BT.Datastore.EFCore.Repositories
 				.AsNoTracking().FirstOrDefaultAsync(b => b.Id == id);
 		}
 
-		public async Task<bool> BrandCodeInUseAsync(string brandCode)
+		private async Task<bool> BrandCodeInUseAsync(string brandCode)
 		{
 			// Stored in uppercase.
 			var brandCodeToCompare = brandCode.ToUpperInvariant();

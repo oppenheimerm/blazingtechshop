@@ -11,5 +11,6 @@ namespace BT.Datastore.EFCore.Interfaces
         IQueryable<Category> GetAll();
         Task<(Category category, bool Success, string ErrorMessage)> Create(Category category);
         Task<(Category category, bool Success, string ErrorMessage)> Edit(Category category);
+
     }
 }

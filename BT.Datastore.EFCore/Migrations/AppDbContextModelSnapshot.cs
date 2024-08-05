@@ -385,7 +385,7 @@ namespace BT.Datastore.EFCore.Migrations
                         .IsRequired();
 
                     b.HasOne("BT.Core.Category", "Category")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -469,6 +469,11 @@ namespace BT.Datastore.EFCore.Migrations
                 });
 
             modelBuilder.Entity("BT.Core.Brand", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("BT.Core.Category", b =>
                 {
                     b.Navigation("Products");
                 });

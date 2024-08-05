@@ -1,0 +1,98 @@
+﻿@page "/categories/index"
+
+<PageTitle>BlazingTech Admin - Categories</PageTitle>
+
+@using BT.Core.Helpers.Paging
+@using BT.UseCases.Categories
+@using BT.Core.Helpers
+
+@inject IGetAllCategoriesUseCase GetAllCategoriesUseCase;
+@inject IConfiguration Configuration;
+
+
+@code {
+    public IQueryable<Category>? Categories {get; set;}
+    int? activeId { get; set; } = 0;
+
+    protected override void OnInitialized()
+    {
+        Categories = GetAllCategoriesUseCase.Execute();
+    }
+
+    void SetActive(int id)
+    {
+        activeId = id;
+    }
+}
+
+<div class="head-title">
+    <div class="left">
+        <h1>Categories</h1>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">All</a>
+            </li>
+            <li>
+                <span class="material-symbols-sharp">
+                    chevron_right
+                </span>
+            </li>
+            <li>
+                <a class="active" href="/">Home</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="all-categories" class="margin-top-small">
+    <div class="flex-row container">
+        @if (Categories == null)
+        {
+            <h1>LOADING...</h1>
+        }
+        else
+        {
+            <div class="table-wrap">
+                <div class="tbl-head-inner">
+                    <span class="table-title">All Categories</span>
+                    <a class="btn btn-primary" href="categories/create">New</a>
+                </div>
+
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th> Name </th>
+                            <th>Code</th>
+                            <th>Icon</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            var categoryItems = Categories.ToList();
+                            if (categoryItems != null)
+                            {
+                                foreach (var item in categoryItems)
+                                {
+                                    <tr @onclick="@(() => SetActive(item.Id))" class="@(activeId == item.Id ? "active-row" : "")">
+                                        <td>@item.Id</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Code</td>
+                                        @if (!string.IsNullOrEmpty(item.Icon))
+                                        {
+                                            <td><img class="tbl-icon" src="@ViewHelpers.GetCategoryIconUrl(@item.Icon)" /></td>
+                                        }
+                                        <td></td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+
+        }
+    </div>
+</div>
