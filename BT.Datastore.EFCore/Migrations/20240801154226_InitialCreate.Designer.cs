@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BT.Datastore.EFCore.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240729152236_InitialCreate")]
+    [Migration("20240801154226_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -388,7 +388,7 @@ namespace BT.Datastore.EFCore.Migrations
                         .IsRequired();
 
                     b.HasOne("BT.Core.Category", "Category")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -472,6 +472,11 @@ namespace BT.Datastore.EFCore.Migrations
                 });
 
             modelBuilder.Entity("BT.Core.Brand", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("BT.Core.Category", b =>
                 {
                     b.Navigation("Products");
                 });

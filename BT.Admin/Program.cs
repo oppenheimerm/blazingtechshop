@@ -4,6 +4,7 @@ using BT.Datastore.EFCore;
 using BT.Datastore.EFCore.Interfaces;
 using BT.Datastore.EFCore.Repositories;
 using BT.UseCases.Brands;
+using BT.UseCases.Categories;
 using BTW.Admin.Components.Account;
 using BTW.Datastore.EFCore.Core;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -37,6 +38,8 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 // UseCases
 builder.Services.AddTransient<IAddBrandUseCase, AddBrandUseCase>();
 builder.Services.AddTransient<IGetAllBrandsUseCase, GetAllBrandsUseCase>();
+builder.Services.AddTransient<IAddCategoryUseCase, AddCategoryUseCase>();
+builder.Services.AddTransient<IGetAllCategoriesUseCase, GetAllCategoriesUseCase>();
 
 var app = builder.Build();
 

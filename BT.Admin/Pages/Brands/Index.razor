@@ -7,7 +7,7 @@
 @inject IGetAllBrandsUseCase GetAllBrandsUseCase;
 @inject IConfiguration Configuration;
 
-<PageTitle>BlazingTech Admin - Index</PageTitle>
+<PageTitle>BlazingTech Admin - Brands</PageTitle>
 
 @code {
     [Parameter]
@@ -18,6 +18,7 @@
     public PagingParameters? IndexPagingParameters { get; set; }
     int? Spread = 2;
     public List<PagingLink>? Links { get; set; }
+    int? activeId { get; set; } = 0;
 
     public PagingResponse<Brand>? PagedBrandList { get; set; }
 
@@ -71,6 +72,11 @@
         Links.Add(new PagingLink(brands.MetaData.CurrentPage + 1, brands.MetaData.HasNext, ">"));
     }
 
+
+    void SetActive(int id)
+    {
+        activeId = id;    
+    }
 }
 
 <div class="head-title">
@@ -101,37 +107,39 @@
         else
         {
 
-            <div class="tbl-head-inner">
-                <span class="table-title">All Brands</span>
-                <button class="">Add a New Brand</button>
-            </div>
-
-            <table class="std-table">
-                <thead class="table-head">                    
-                    <tr>
-                        <th>Id</th>
-                        <th> Name </th>
-                        <th>Code</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @{
-                        if (PagedBrandList.Items != null)
-                        {
-                            foreach (var item in PagedBrandList.Items)
+            <div class="table-wrap">
+                <div class="tbl-head-inner">
+                    <span class="table-title">All Brands</span>
+                    <a class="btn btn-primary" href="brands/create">New</a>
+                </div>
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th> Name </th>
+                            <th>Code</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            if (PagedBrandList.Items != null)
                             {
-                                <tr>
-                                    <td>@item.Id</td>
-                                    <td>@item.Name</td>
-                                    <td>@item.Code</td>
-                                    <td></td>
-                                </tr>
+                                foreach (var item in PagedBrandList.Items)
+                                {
+                                    <tr @onclick="@(() => SetActive(item.Id!.Value))" class="@(activeId == item.Id ? "active-row" : "")">
+                                        <td>@item.Id</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Code</td>
+                                        <td></td>
+                                    </tr>
+                                }
                             }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+
         }
     </div>
 </div>

@@ -21,5 +21,23 @@ namespace BT.Admin.Components
 			}
 		}
 
+		public static Category ToCategory(AddCategory vm)
+		{
+			if (vm == null)
+			{
+				throw new ArgumentNullException(nameof(vm));
+			}
+			else
+			{
+				return new Category
+				{
+					Name = vm.Name,
+					Code = vm.Code,
+					Icon = vm.Icon,
+					Description = vm.Description
+				};
+			}
+		}
+
 	}
 }

@@ -1,0 +1,129 @@
+﻿@page "/categories/create"
+
+@using System.ComponentModel.DataAnnotations
+@using BT.UseCases.Categories
+@using Microsoft.AspNetCore.Mvc;
+@using BT.Admin.Components.Validation
+@using BT.Admin.Components
+
+
+<PageTitle>Products - Create Brand</PageTitle>
+
+@inject NavigationManager NavManager
+@inject IAddCategoryUseCase AddCategoryUseCase
+
+
+
+@code {
+	[SupplyParameterFromForm]
+	public AddCategory? Category { get; set; }
+	private CustomValidation? customValidation;
+	private bool disabled;
+	private string? message;
+	private bool ShowErrorDiv = false;
+	//private bool ShowResetButton = false;
+
+	protected override void OnInitialized() => Category ??= new();
+
+	private async Task Submit()
+	{
+		customValidation?.ClearErrors();
+		var errors = new Dictionary<string, List<string>>();
+
+		if (errors.Any())
+		{
+			customValidation?.DisplayErrors(errors);
+		}
+		else
+		{
+			var status = await AddCategoryUseCase.Add(ModelHelpers.ToCategory(Category));
+			if (status.Success)
+			{
+				NavManager.NavigateTo("/categories/index");
+			}
+			else
+			{
+				disabled = true;
+				message = status.ErrorMessage;
+				ShowErrorDiv = true;
+				//ShowResetButton = true;
+			}
+		}
+
+	}
+
+	/*void RestForm()
+	{
+		disabled = false;
+		ShowErrorDiv = false;
+		ShowResetButton = false;
+		StateHasChanged();
+		customValidation?.ClearErrors();
+	}*/
+
+}
+
+<section id="category-create" class="section">
+	<div class="head-title">
+		<div class="left">
+			<h1>Categories</h1>
+			<ul class="breadcrumb">
+				<li>
+					<a href="">Create</a>
+				</li>
+				<li>
+					<span class="material-symbols-sharp">
+						chevron_right
+					</span>
+				</li>
+				<li>
+					<a class="active" href="/categories/index">All</a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+	<div class="container">
+		<div class="form-card">
+			<EditForm Model=@Category OnValidSubmit="Submit" FormName="category-create">
+				<DataAnnotationsValidator />
+				<CustomValidation @ref="customValidation" />
+				<ValidationSummary />
+				<div class="form-group">
+					<label for="Name" class="">Name</label>
+					<InputText @bind-Value=Category!.Name class="form-control" type="text" aria-label="Category name" id="Name" />
+					<span class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label for="Code" class="">Product Code</label>
+					<InputText @bind-Value=Category.Code class="form-control" type="text" aria-label="Category code" id="Code" />
+					<span class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label for="Icon" class="">Icon </label>
+					<InputText @bind-Value=Category.Icon class="form-control" type="text" aria-label="Category icon" id="Icon" />
+					<span class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label for="Description" class="">Description </label>
+					<InputTextArea @bind-Value=Category.Description class="form-control" type="text" aria-label="Category description" id="Description" />
+					<span class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<div class="actions-wrap">
+						<button class="btn btn-primary" type="submit" disabled="@disabled">Submit</button>						
+					</div>
+				</div>
+				<div hidden="@ShowErrorDiv" class="form-group" style="@(ShowErrorDiv ? "" : "display:none")" >
+					<div class="form-server-error" style="@(ShowErrorDiv ? "" : "display:none")" >
+						@message
+					</div>
+				</div>
+
+			</EditForm>
+		</div>
+
+
+	</div>
+</section>
